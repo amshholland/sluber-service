@@ -1,29 +1,12 @@
-# README #
+# README
 
-This README would normally document whatever steps are necessary to get your application up and running.
+The SLUBER service is a RESTful service which performs operations on passengers and drivers.
 
-### What is this repository for? ###
+## Installation
+This project requires JDK 14
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Clone repo: https://bitbucket.org/tschwebach/sluber-service
+* Build:  mvn clean install
+* Run: mvn spring-boot:run
+* Build Docker image:  docker build -t sluber-service -f ./Dockerfile .
+* Run Docker image:  docker run -p 8080:8080 --name sluber-service sluber-service
