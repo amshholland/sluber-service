@@ -79,6 +79,7 @@
 							<modelPackage>com.slalom.sluber.api.models</modelPackage>
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<configOptions>
+								<interfaceOnly>true</interfaceOnly>
 								<sourceFolder>src/java/main</sourceFolder>
 							</configOptions>
 						</configuration>
