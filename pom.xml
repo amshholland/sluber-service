@@ -132,7 +132,7 @@
                 <version>2.5.2</version>
                 <configuration>
                     <to>
-                        <image>484951121041.dkr.ecr.us-west-2.amazonaws.com/sluber-service</image>
+                        <image>500141399141.dkr.ecr.us-west-2.amazonaws.com/sluber-service/image>
                     </to>
                 </configuration>
             </plugin>
