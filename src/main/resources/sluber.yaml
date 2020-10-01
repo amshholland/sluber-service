@@ -2,13 +2,15 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: Slalom SLUBER
+  description: 'SLUBER backend service to help persons coordinate rides'
+basePath: /sluber
 paths:
-  /sluber/drivers:
+  /trips:
     post:
       tags:
-        - drivers
-      summary: Create a new driver
-      operationId: createDriver
+        - trip
+      summary: Create a new trip
+      operationId: createTrip
       consumes:
         - application/json
       produces:
@@ -16,27 +18,46 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Driver to create
+          description: Trip to create
           required: true
           schema:
-            $ref: '#/definitions/DriverDetails'
+            $ref: '#/definitions/CreateTripDetails'
       responses:
         200:
           description: successful operation
           schema:
-            $ref: '#/definitions/DriverResponse'
+            $ref: '#/definitions/TripDetails'
         400:
           description: Invalid input
+    get:
+      tags:
+        - trip
+      summary: Retrieves all trips
+      operationId: getTrips
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TripDetails'
 definitions:
-  DriverDetails:
+  CreateTripDetails:
     type: object
     properties:
-      name:
+      origin:
         type: string
-  DriverResponse:
+  TripDetails:
     type: object
     properties:
-      driverId:
+      tripId:
         type: string
+      origin:
+        type: string
+
 schemes:
   - http
