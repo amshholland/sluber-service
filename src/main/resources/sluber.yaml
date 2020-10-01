@@ -3,9 +3,8 @@ info:
   version: 1.0.0
   title: Slalom SLUBER
   description: 'SLUBER backend service to help persons coordinate rides'
-basePath: /sluber
 paths:
-  /trips:
+  /sluber/trips:
     post:
       tags:
         - trip
