@@ -10,7 +10,9 @@ pipelines:
               - apt-get update
               - apt-get install -y maven 
               - apt-get install -y amazon-ecr-credential-helper
-              - mvn compile jib:build    
+              - mvn compile jib:build
+              - aws ecs update-service --region us-west-2 --cluster sluber --service backend --force-new-deployment
+
   default:
     - step:
         caches:
