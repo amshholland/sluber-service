@@ -48,21 +48,8 @@ definitions:
   CreateTripDetails:
     type: object
     properties:
-      tripID:
-        type: string
       origin:
         type: string
-      departureTime:
-        type: string
-        # format: date-time
-      comments:
-        type: string
-      seatsAvailable:
-        type: integer
-      passengers:
-        type: array
-        items:
-          $ref: '#/definitions/EmployeeDetails'
   TripDetails:
     type: object
     properties:

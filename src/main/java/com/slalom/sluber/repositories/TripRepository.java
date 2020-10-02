@@ -49,10 +49,6 @@ public class TripRepository {
         TripDetails tripDetails = new TripDetails();
         tripDetails.setTripId(tripId);
         tripDetails.setOrigin(createTripDetails.getOrigin());
-        tripDetails.setDepartureTime(createTripDetails.getDepartureTime());
-        tripDetails.setComments(createTripDetails.getComments());
-        tripDetails.setSeatsAvailable(createTripDetails.getSeatsAvailable());
-        tripDetails.setPassengers(createTripDetails.getPassengers());
 
         this.trips.put(tripId, tripDetails);
 
