@@ -61,13 +61,13 @@ definitions:
         type: string
       arrivalTime:
         type: string
-        format: date-time
+      #   format: date-time
       driver:
         $ref: '#/definitions/EmployeeDetails'
       originator:
         type: string
-        enum: [DRIVER, PASSENGER]
-  EmployeeDetails
+        # enum: [DRIVER, PASSENGER]
+  EmployeeDetails:
     type: object
     properties:
       name:

@@ -2,6 +2,7 @@ package com.slalom.sluber.repositories;
 
 import com.slalom.sluber.api.models.CreateTripDetails;
 import com.slalom.sluber.api.models.TripDetails;
+import com.slalom.sluber.api.models.EmployeeDetails;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -17,9 +18,16 @@ public class TripRepository {
 
     @PostConstruct
     public void init() {
+        EmployeeDetails employee1 = new EmployeeDetails();
         TripDetails trip1 = new TripDetails();
+        employee1.setName("Todd S");
+        employee1.setPhoneNumber("555-555-1234");
         trip1.setTripId("tripId-1");
         trip1.setOrigin("Slalom Hq, Seattle");
+        trip1.setDestination("Quarterly, Westin Bellevue");
+        trip1.setArrivalTime("2021-10-21T18:32:28Z");
+        trip1.setDriver(employee1);
+        trip1.setOriginator("DRIVER");
 
         trips.put("tripId-1", trip1);
     }
