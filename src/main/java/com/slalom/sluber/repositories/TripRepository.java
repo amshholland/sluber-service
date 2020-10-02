@@ -4,7 +4,7 @@ import com.slalom.sluber.api.models.CreateTripDetails;
 import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.api.models.EmployeeDetails;
 import org.springframework.stereotype.Repository;
-import org.threeten.bp.OffsetDateTime;
+import java.time.OffsetDateTime;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
