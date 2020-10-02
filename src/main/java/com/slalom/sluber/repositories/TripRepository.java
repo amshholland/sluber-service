@@ -4,6 +4,7 @@ import com.slalom.sluber.api.models.CreateTripDetails;
 import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.api.models.EmployeeDetails;
 import org.springframework.stereotype.Repository;
+import org.threeten.bp.OffsetDateTime;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -25,9 +26,9 @@ public class TripRepository {
         trip1.setTripId("tripId-1");
         trip1.setOrigin("Slalom Hq, Seattle");
         trip1.setDestination("Quarterly, Westin Bellevue");
-        trip1.setArrivalTime("2021-10-21T18:32:28Z");
+        trip1.setArrivalTime(OffsetDateTime.parse("2021-10-21T18:32:28Z"));
         trip1.setDriver(employee1);
-        trip1.setOriginator("DRIVER");
+        trip1.setOriginator(TripDetails.OriginatorEnum.DRIVER);
 
         trips.put("tripId-1", trip1);
     }
