@@ -22,20 +22,20 @@ public class TripRepository {
         EmployeeDetails passenger1 = new EmployeeDetails();
         EmployeeDetails passenger2 = new EmployeeDetails();
         List<EmployeeDetails> passengers = new ArrayList<EmployeeDetails>();
-        trip1.setTripId("tripId-1");
-        trip1.setOrigin("Slalom Hq, Seattle");
-        trip1.setDepartureTime("2021-010-21T17:32:28Z");
-        trip1.setComments("Willing to pick people up anywhere in downtown Seattle.");
+        trip1.setTripId('tripId-1');
+        trip1.setOrigin('Slalom Hq, Seattle');
+        trip1.setDepartureTime('2021-010-21T17:32:28Z');
+        trip1.setComments('Willing to pick people up anywhere in downtown Seattle.');
         trip1.setSeatsAvailable(3);
-        passenger1.setName("Pragathi S");
-        passenger1.setPhoneNumber("666-555-4444");
-        passenger2.setName("Anthony S");
-        passenger2.setPhoneNumber("111-222-3333");
+        passenger1.setName('Pragathi S');
+        passenger1.setPhoneNumber('666-555-4444');
+        passenger2.setName('Anthony S');
+        passenger2.setPhoneNumber('111-222-3333');
         passengers.add(passenger1);
         passengers.add(passenger2);
         trip1.setPassengers(passengers);
 
-        trips.put("tripId-1", trip1);
+        trips.put('tripId-1', trip1);
     }
 
     /**
