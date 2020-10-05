@@ -57,6 +57,25 @@ definitions:
         type: string
       origin:
         type: string
+      destination:
+        type: string
+      arrivalTime:
+        type: string
+        format: date-time
+      driver:
+        $ref: '#/definitions/EmployeeDetails'
+      originator:
+        type: string
+        enum:
+          - DRIVER
+          - PASSENGER
+  EmployeeDetails:
+    type: object
+    properties:
+      name:
+        type: string
+      phoneNumber:
+        type: string
 
 schemes:
   - http
