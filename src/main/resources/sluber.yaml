@@ -59,7 +59,7 @@ definitions:
         type: string
       departureTime:
         type: string
-        # format: date-time
+        format: date-time
       comments:
         type: string
       seatsAvailable:
@@ -68,6 +68,18 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/EmployeeDetails'
+      destination:
+        type: string
+      arrivalTime:
+        type: string
+        format: date-time
+      driver:
+        $ref: '#/definitions/EmployeeDetails'
+      originator:
+        type: string
+        enum:
+          - DRIVER
+          - PASSENGER
   EmployeeDetails:
     type: object
     properties:

@@ -10,7 +10,12 @@ pipelines:
               - apt-get update
               - apt-get install -y maven 
               - apt-get install -y amazon-ecr-credential-helper
-              - mvn compile jib:build    
+              - apt-get update && apt-get install -y python3-pip
+              - pip3 install -U awscli
+              - $(aws ecr get-login --no-include-email --region us-west-2)
+              - mvn compile jib:build
+              - aws ecs update-service --region us-west-2 --cluster sluber --service backend --force-new-deployment
+
   default:
     - step:
         caches:

@@ -4,6 +4,7 @@ import com.slalom.sluber.api.models.CreateTripDetails;
 import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.api.models.EmployeeDetails;
 import org.springframework.stereotype.Repository;
+import java.time.OffsetDateTime;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -18,13 +19,14 @@ public class TripRepository {
 
     @PostConstruct
     public void init() {
+        EmployeeDetails employee1 = new EmployeeDetails();
         TripDetails trip1 = new TripDetails();
         EmployeeDetails passenger1 = new EmployeeDetails();
         EmployeeDetails passenger2 = new EmployeeDetails();
         List<EmployeeDetails> passengers = new ArrayList<EmployeeDetails>();
         trip1.setTripId("tripId-1");
         trip1.setOrigin("Slalom Hq, Seattle");
-        trip1.setDepartureTime("2021-010-21T17:32:28Z");
+        trip1.setDepartureTime(OffsetDateTime.parse("2021-10-21T17:32:28Z"));
         trip1.setComments("Willing to pick people up anywhere in downtown Seattle.");
         trip1.setSeatsAvailable(3);
         passenger1.setName("Pragathi S");
@@ -34,6 +36,14 @@ public class TripRepository {
         passengers.add(passenger1);
         passengers.add(passenger2);
         trip1.setPassengers(passengers);
+        employee1.setName("Todd S");
+        employee1.setPhoneNumber("555-555-1234");
+        trip1.setTripId("tripId-1");
+        trip1.setOrigin("Slalom Hq, Seattle");
+        trip1.setDestination("Quarterly, Westin Bellevue");
+        trip1.setArrivalTime(OffsetDateTime.parse("2021-10-21T18:32:28Z"));
+        trip1.setDriver(employee1);
+        trip1.setOriginator(TripDetails.OriginatorEnum.DRIVER);
 
         trips.put("tripId-1", trip1);
     }
