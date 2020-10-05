@@ -33,8 +33,6 @@ paths:
         - trip
       summary: Retrieves all trips
       operationId: getTrips
-      consumes:
-        - application/json
       produces:
         - application/json
       responses:
