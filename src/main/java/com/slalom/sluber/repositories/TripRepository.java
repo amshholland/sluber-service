@@ -4,6 +4,8 @@ import com.slalom.sluber.api.models.CreateTripDetails;
 import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.api.models.EmployeeDetails;
 import org.springframework.stereotype.Repository;
+
+import java.time.Clock;
 import java.time.OffsetDateTime;
 
 import javax.annotation.PostConstruct;
@@ -12,9 +14,11 @@ import java.util.*;
 @Repository
 public class TripRepository {
     private Map<String, TripDetails> trips;
+    private Clock clock;
 
-    public TripRepository() {
+    public TripRepository(Clock clock) {
         trips = new HashMap<>();
+        this.clock = clock;
     }
 
     @PostConstruct
@@ -68,12 +72,12 @@ public class TripRepository {
 
 
     /**
-     * Method to generate a unique trip id.  It's public so we can mock it in tests
+     * Method to generate a unique trip id.
      *
      * @return unique number based on current time
      */
-    public String generateTripId() {
-        return String.valueOf(System.currentTimeMillis());
+    private String generateTripId() {
+        return String.valueOf(this.clock.millis());
     }
 
     /**
