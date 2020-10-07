@@ -59,7 +59,7 @@ public class TripRepository {
         TripDetails tripDetails = new TripDetails();
         tripDetails.setTripId(tripId);
         tripDetails.setOrigin(createTripDetails.getOrigin());
-        tripDetails.setDestination("Quarterly, Westin Bellevue");
+        tripDetails.setDestination(createTripDetails.getDestination());
         tripDetails.setDepartureTime(createTripDetails.getDepartureTime());
         tripDetails.setComments(createTripDetails.getComments());
         if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
