@@ -59,6 +59,15 @@ public class TripRepository {
         TripDetails tripDetails = new TripDetails();
         tripDetails.setTripId(tripId);
         tripDetails.setOrigin(createTripDetails.getOrigin());
+        tripDetails.setDestination("Quarterly, Westin Bellevue");
+        tripDetails.setDepartureTime(createTripDetails.getDepartureTime());
+        tripDetails.setComments(createTripDetails.getComments());
+        tripDetails.setOriginator(createTripDetails.getOriginator());
+        tripDetails.setDriver(createTripDetails.getDriver()); // should it be setUsers()?
+        if (createTripDetails.getOriginator() == TripDetails.OriginatorEnum.DRIVER) {
+            tripDetails.setSeatsAvailable(createTripDetails.getSeatsAvailable());
+            tripDetails.setArrivalTime(createTripDetails.getArrivalTime());
+        }
 
         this.trips.put(tripId, tripDetails);
 

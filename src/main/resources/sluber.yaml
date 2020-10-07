@@ -48,6 +48,29 @@ definitions:
     properties:
       origin:
         type: string
+      departureTime:
+        type: string
+        format: date-time
+      comments:
+        type: string
+      seatsAvailable:
+        type: integer
+      passengers:
+        type: array
+        items:
+          $ref: '#/definitions/EmployeeDetails'
+      destination:
+        type: string
+      arrivalTime:
+        type: string
+        format: date-time
+      driver:
+        $ref: '#/definitions/EmployeeDetails'
+      originator:
+        type: string
+        enum:
+          - DRIVER
+          - PASSENGER
   TripDetails:
     type: object
     properties:
