@@ -62,9 +62,13 @@ public class TripRepository {
         tripDetails.setDestination("Quarterly, Westin Bellevue");
         tripDetails.setDepartureTime(createTripDetails.getDepartureTime());
         tripDetails.setComments(createTripDetails.getComments());
-        tripDetails.setOriginator(createTripDetails.getOriginator());
-        tripDetails.setDriver(createTripDetails.getDriver()); // should it be setUsers()?
-        if (createTripDetails.getOriginator() == TripDetails.OriginatorEnum.DRIVER) {
+        if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
+            tripDetails.setOriginator(TripDetails.OriginatorEnum.DRIVER);
+        } else {
+            tripDetails.setOriginator(TripDetails.OriginatorEnum.PASSENGER);
+        }
+        tripDetails.setDriver(createTripDetails.getDriver());
+        if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
             tripDetails.setSeatsAvailable(createTripDetails.getSeatsAvailable());
             tripDetails.setArrivalTime(createTripDetails.getArrivalTime());
         }
