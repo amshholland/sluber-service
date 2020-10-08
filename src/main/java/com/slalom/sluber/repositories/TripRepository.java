@@ -42,8 +42,6 @@ public class TripRepository {
         trip1.setPassengers(passengers);
         employee1.setName("Todd S");
         employee1.setPhoneNumber("555-555-1234");
-        trip1.setTripId("tripId-1");
-        trip1.setOrigin("Slalom Hq, Seattle");
         trip1.setDestination("Quarterly, Westin Bellevue");
         trip1.setArrivalTime(OffsetDateTime.parse("2021-10-21T18:32:28Z"));
         trip1.setDriver(employee1);
@@ -63,6 +61,19 @@ public class TripRepository {
         TripDetails tripDetails = new TripDetails();
         tripDetails.setTripId(tripId);
         tripDetails.setOrigin(createTripDetails.getOrigin());
+        tripDetails.setDestination(createTripDetails.getDestination());
+        tripDetails.setDepartureTime(createTripDetails.getDepartureTime());
+        tripDetails.setComments(createTripDetails.getComments());
+        if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
+            tripDetails.setOriginator(TripDetails.OriginatorEnum.DRIVER);
+        } else {
+            tripDetails.setOriginator(TripDetails.OriginatorEnum.PASSENGER);
+        }
+        tripDetails.setDriver(createTripDetails.getDriver());
+        if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
+            tripDetails.setSeatsAvailable(createTripDetails.getSeatsAvailable());
+            tripDetails.setArrivalTime(createTripDetails.getArrivalTime());
+        }
 
         this.trips.put(tripId, tripDetails);
 
