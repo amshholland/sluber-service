@@ -12,6 +12,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import java.time.OffsetDateTime;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -46,7 +48,20 @@ class SluberServiceApplicationTests {
 		List<TripDetails> trips = response.getBody();
 		assertAll(
 				() -> assertEquals(1, trips.size()),
-				() -> assertEquals("tripId-1", trips.get(0).getTripId())
+				() -> assertEquals("tripId-1", trips.get(0).getTripId()),
+				() -> assertEquals("Slalom Hq, Seattle", trips.get(0).getOrigin()),
+				() -> assertEquals(OffsetDateTime.parse("2021-10-21T17:32:28Z"), trips.get(0).getDepartureTime()),
+				() -> assertEquals("Willing to pick people up anywhere in downtown Seattle.", trips.get(0).getComments()),
+				() -> assertEquals(3, trips.get(0).getSeatsAvailable()),
+				() -> assertEquals("Quarterly, Westin Bellevue", trips.get(0).getDestination()),
+				() -> assertEquals(OffsetDateTime.parse("2021-10-21T18:32:28Z"), trips.get(0).getArrivalTime()),
+				() -> assertEquals("Pragathi S", trips.get(0).getPassengers().get(0).getName()),
+				() -> assertEquals("666-555-4444", trips.get(0).getPassengers().get(0).getPhoneNumber()),
+				() -> assertEquals("Anthony S", trips.get(0).getPassengers().get(1).getName()),
+				() -> assertEquals("111-222-3333", trips.get(0).getPassengers().get(1).getPhoneNumber()),
+				() -> assertEquals("Todd S", trips.get(0).getDriver().getName()),
+				() -> assertEquals("555-555-1234", trips.get(0).getDriver().getPhoneNumber()),
+				() -> assertEquals(TripDetails.OriginatorEnum.DRIVER, trips.get(0).getOriginator())
 		);
 	}
 }
