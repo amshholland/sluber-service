@@ -38,8 +38,6 @@ public class TripRepository {
         trip1.setPassengers(passengers);
         employee1.setName("Todd S");
         employee1.setPhoneNumber("555-555-1234");
-        trip1.setTripId("tripId-1");
-        trip1.setOrigin("Slalom Hq, Seattle");
         trip1.setDestination("Quarterly, Westin Bellevue");
         trip1.setArrivalTime(OffsetDateTime.parse("2021-10-21T18:32:28Z"));
         trip1.setDriver(employee1);
