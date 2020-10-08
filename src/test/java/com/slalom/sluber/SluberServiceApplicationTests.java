@@ -1,10 +1,12 @@
 package com.slalom.sluber;
 
+import com.slalom.sluber.api.models.CreateTripDetails;
 import com.slalom.sluber.api.models.TripDetails;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -13,20 +15,26 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.time.OffsetDateTime;
-
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(
-		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SluberServiceApplicationTests {
 	private static HttpHeaders headers;
 	private static final String URL_PREFIX = "/";
+	private static final String ORIGIN = "Seattle Slalom HQ";
 
 	@Autowired
 	private TestRestTemplate restTemplate;
+
+	@MockBean
+	private Clock clock;
 
 	@BeforeAll
 	static void beforeAll() {
@@ -64,4 +72,21 @@ class SluberServiceApplicationTests {
 				() -> assertEquals(TripDetails.OriginatorEnum.DRIVER, trips.get(0).getOriginator())
 		);
 	}
+
+    @Test
+    void createTrip() {
+        CreateTripDetails createTripDetails = new CreateTripDetails();
+        createTripDetails.setOrigin(ORIGIN);
+        HttpEntity<CreateTripDetails> entity = new HttpEntity<>(createTripDetails, headers);
+
+        ResponseEntity<TripDetails> response =
+                restTemplate.postForEntity(URL_PREFIX + "/sluber/trips", entity, TripDetails.class);
+
+        TripDetails trip = response.getBody();
+
+        assertAll(
+                () -> assertEquals(String.valueOf(0), trip.getTripId()),
+                () -> assertEquals(ORIGIN, trip.getOrigin())
+        );
+    }
 }
