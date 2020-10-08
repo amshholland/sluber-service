@@ -91,6 +91,19 @@ public class TripRepository {
         TripDetails tripDetails = new TripDetails();
         tripDetails.setTripId(tripId);
         tripDetails.setOrigin(createTripDetails.getOrigin());
+        tripDetails.setDestination(createTripDetails.getDestination());
+        tripDetails.setDepartureTime(createTripDetails.getDepartureTime());
+        tripDetails.setComments(createTripDetails.getComments());
+        if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
+            tripDetails.setOriginator(TripDetails.OriginatorEnum.DRIVER);
+        } else {
+            tripDetails.setOriginator(TripDetails.OriginatorEnum.PASSENGER);
+        }
+        tripDetails.setDriver(createTripDetails.getDriver());
+        if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
+            tripDetails.setSeatsAvailable(createTripDetails.getSeatsAvailable());
+            tripDetails.setArrivalTime(createTripDetails.getArrivalTime());
+        }
 
         this.trips.put(tripId, tripDetails);
 
