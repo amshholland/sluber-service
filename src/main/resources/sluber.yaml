@@ -42,7 +42,8 @@ paths:
             type: array
             items:
               $ref: '#/definitions/TripDetails'
-    patch:
+  /sluber/trips/{tripId}/add-passenger:
+    put:
       tags:
         - trip
       summary: Adds a passenger to a trip

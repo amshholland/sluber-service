@@ -54,7 +54,7 @@ class SluberServiceApplicationTests {
 						});
 		List<TripDetails> trips = response.getBody();
 		assertAll(
-				() -> assertEquals(1, trips.size()),
+				() -> assertEquals(3, trips.size()),
 				() -> assertEquals("tripId-1", trips.get(0).getTripId()),
 				() -> assertEquals("Slalom Hq, Seattle", trips.get(0).getOrigin()),
 				() -> assertEquals(OffsetDateTime.parse("2021-10-21T17:32:28Z"), trips.get(0).getDepartureTime()),
@@ -97,14 +97,16 @@ class SluberServiceApplicationTests {
         HttpEntity<TripDetails> entity = new HttpEntity(employeeDetails, headers);
 
         ResponseEntity<TripDetails> response =
-                restTemplate.exchange(URL_PREFIX + "/sluber/trips/tripId-3", HttpMethod.PUT, entity, TripDetails.class);
+                restTemplate.exchange(URL_PREFIX + "/sluber/trips/tripId-3/add-passenger", HttpMethod.PUT, entity, TripDetails.class);
 
         TripDetails trip = response.getBody();
 
         assertAll(
-                () -> assertEquals(String.valueOf(0), trip.getTripId()),
-                () -> assertEquals(ORIGIN, trip.getOrigin()),
-                () -> assertEquals(1, trip.getPassengers().size())
+                () -> assertEquals("tripId-3", trip.getTripId()),
+                () -> assertEquals("Slalom Hq, Seattle", trip.getOrigin()),
+				() -> assertEquals(1, trip.getPassengers().size()),
+				() -> assertEquals("Passenger", trip.getPassengers().get(0).getName()),
+				() -> assertEquals("123-123-1234", trip.getPassengers().get(0).getPhoneNumber())
         );
     }
 }

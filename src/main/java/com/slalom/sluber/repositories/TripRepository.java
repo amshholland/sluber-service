@@ -23,6 +23,7 @@ public class TripRepository {
 
     @PostConstruct
     public void init() {
+        // Trip 1 has passsangers and a driver
         EmployeeDetails employee1 = new EmployeeDetails();
         TripDetails trip1 = new TripDetails();
         EmployeeDetails passenger1 = new EmployeeDetails();
@@ -48,6 +49,7 @@ public class TripRepository {
         trip1.setOriginator(TripDetails.OriginatorEnum.DRIVER);
         trips.put("tripId-1", trip1);
 
+        // Trip 2 has a passenger but no driver
         EmployeeDetails employee2 = new EmployeeDetails();
         TripDetails trip2 = new TripDetails();
         trip2.setTripId("tripId-2");
@@ -61,9 +63,9 @@ public class TripRepository {
         trip2.setDestination("Slalom HQ, Seattle");
         trip2.setArrivalTime(OffsetDateTime.parse("2021-11-21T18:32:28Z"));
         trip2.setOriginator(TripDetails.OriginatorEnum.PASSENGER);
-
         trips.put("tripId-2", trip2);
 
+        // Trip 3 has a driver but no passengers
         TripDetails trip3 = new TripDetails();
         trip3.setTripId("tripId-3");
         trip3.setOrigin("Slalom Hq, Seattle");
@@ -77,6 +79,7 @@ public class TripRepository {
         trip3.setArrivalTime(OffsetDateTime.parse("2021-10-31T18:32:28Z"));
         trip3.setDriver(employee3);
         trip3.setOriginator(TripDetails.OriginatorEnum.DRIVER);
+        trip3.setPassengers(new ArrayList<>());
         trips.put("tripId-3", trip3);
     }
 
