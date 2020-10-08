@@ -2,6 +2,7 @@ package com.slalom.sluber.controllers;
 
 import com.slalom.sluber.api.SluberApi;
 import com.slalom.sluber.api.models.CreateTripDetails;
+import com.slalom.sluber.api.models.EmployeeDetails;
 import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.services.TripService;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +29,10 @@ public class TripController implements SluberApi {
     @Override
     public ResponseEntity<List<TripDetails>> getTrips() {
         return ResponseEntity.ok(this.tripService.getTrips());
+    }
+
+    @Override
+    public ResponseEntity<TripDetails> addPassenger(String tripId, EmployeeDetails body) {
+        return ResponseEntity.ok(this.tripService.addPassenger(tripId, body));
     }
 }
