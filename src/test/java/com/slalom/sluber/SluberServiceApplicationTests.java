@@ -1,6 +1,7 @@
 package com.slalom.sluber;
 
 import com.slalom.sluber.api.models.CreateTripDetails;
+import com.slalom.sluber.api.models.EmployeeDetails;
 import com.slalom.sluber.api.models.TripDetails;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneId;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -54,7 +53,7 @@ class SluberServiceApplicationTests {
                         });
         List<TripDetails> trips = response.getBody();
         assertAll(
-                () -> assertEquals(1, trips.size()),
+                () -> assertEquals(3, trips.size()),
                 () -> assertEquals("tripId-1", trips.get(0).getTripId())
         );
     }
@@ -73,6 +72,25 @@ class SluberServiceApplicationTests {
         assertAll(
                 () -> assertEquals(String.valueOf(0), trip.getTripId()),
                 () -> assertEquals(ORIGIN, trip.getOrigin())
+        );
+    }
+
+    @Test
+    void addPassengerToTrip() {
+        EmployeeDetails employeeDetails = new EmployeeDetails();
+        employeeDetails.setName("Passenger");
+        employeeDetails.setPhoneNumber("123-123-1234");
+        HttpEntity<TripDetails> entity = new HttpEntity(employeeDetails, headers);
+
+        ResponseEntity<TripDetails> response =
+                restTemplate.exchange(URL_PREFIX + "/sluber/trips/tripId-3", HttpMethod.PUT, entity, TripDetails.class);
+
+        TripDetails trip = response.getBody();
+
+        assertAll(
+                () -> assertEquals(String.valueOf(0), trip.getTripId()),
+                () -> assertEquals(ORIGIN, trip.getOrigin()),
+                () -> assertEquals(1, trip.getPassengers().size())
         );
     }
 }

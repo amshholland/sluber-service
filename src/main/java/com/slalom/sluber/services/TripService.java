@@ -1,7 +1,9 @@
 package com.slalom.sluber.services;
 
 import com.slalom.sluber.api.models.CreateTripDetails;
+import com.slalom.sluber.api.models.EmployeeDetails;
 import com.slalom.sluber.api.models.TripDetails;
+import com.slalom.sluber.exceptions.NotFoundException;
 import com.slalom.sluber.repositories.TripRepository;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,30 @@ public class TripService {
      */
     public List<TripDetails> getTrips() {
         return this.tripRepository.getTrips();
+    }
+
+    /**
+     * When we have business logic on trip creation, it would live here
+     *
+     * @return all trip by its id
+     */
+    public TripDetails getTrip(String tripId) {
+        return this.tripRepository.getTrip(tripId);
+    }
+
+    /**
+     * Adds a passenger to a trip
+     *
+     * @param tripId    id of the trip to add a passenger to
+     * @param passenger passenger details
+     * @return updated trip, with passenger
+     */
+    public TripDetails addPassenger(String tripId, EmployeeDetails passenger) {
+        TripDetails trip = getTrip(tripId);
+        if (trip == null) {
+            throw new NotFoundException();
+        }
+        trip.getPassengers().add(passenger);
+        return this.tripRepository.updateTrip(trip);
     }
 }
