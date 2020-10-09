@@ -103,7 +103,7 @@ public class TripRepository {
             tripDetails.setDriver(createTripDetails.getDriver());
         } else {
             tripDetails.setOriginator(TripDetails.OriginatorEnum.PASSENGER);
-            passengers.add(createTripDetails.getDriver());
+            passengers.add(createTripDetails.getPassengers().get(0));
         }
         tripDetails.setPassengers(passengers);
         if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
