@@ -97,12 +97,15 @@ public class TripRepository {
         tripDetails.setDestination(createTripDetails.getDestination());
         tripDetails.setDepartureTime(createTripDetails.getDepartureTime());
         tripDetails.setComments(createTripDetails.getComments());
+        List<EmployeeDetails> passengers = new ArrayList<EmployeeDetails>();
         if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
             tripDetails.setOriginator(TripDetails.OriginatorEnum.DRIVER);
+            tripDetails.setDriver(createTripDetails.getDriver());
         } else {
             tripDetails.setOriginator(TripDetails.OriginatorEnum.PASSENGER);
+            passengers.add(createTripDetails.getDriver());
         }
-        tripDetails.setDriver(createTripDetails.getDriver());
+        tripDetails.setPassengers(passengers);
         if (createTripDetails.getOriginator() == CreateTripDetails.OriginatorEnum.DRIVER) {
             tripDetails.setSeatsAvailable(createTripDetails.getSeatsAvailable());
             tripDetails.setArrivalTime(createTripDetails.getArrivalTime());
