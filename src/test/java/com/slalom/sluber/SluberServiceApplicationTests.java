@@ -76,7 +76,13 @@ class SluberServiceApplicationTests {
     void createTrip() {
         CreateTripDetails createTripDetails = new CreateTripDetails();
         createTripDetails.setOrigin(ORIGIN);
-        HttpEntity<CreateTripDetails> entity = new HttpEntity<>(createTripDetails, headers);
+        createTripDetails.setOriginator(CreateTripDetails.OriginatorEnum.PASSENGER);
+        EmployeeDetails employeeDetails = new EmployeeDetails();
+        employeeDetails.setName("Charmander");
+		employeeDetails.setPhoneNumber("5558675309");
+		createTripDetails.addPassengersItem(employeeDetails);
+
+		HttpEntity<CreateTripDetails> entity = new HttpEntity<>(createTripDetails, headers);
 
         ResponseEntity<TripDetails> response =
                 restTemplate.postForEntity(URL_PREFIX + "/sluber/trips", entity, TripDetails.class);
@@ -85,8 +91,11 @@ class SluberServiceApplicationTests {
 
         assertAll(
                 () -> assertEquals(String.valueOf(0), trip.getTripId()),
-                () -> assertEquals(ORIGIN, trip.getOrigin())
-        );
+                () -> assertEquals(ORIGIN, trip.getOrigin()),
+				() -> assertEquals(CreateTripDetails.OriginatorEnum.PASSENGER.toString(), trip.getOriginator().toString()),
+				() -> assertEquals("Charmander", trip.getPassengers().get(0).getName()),
+				() -> assertEquals("5558675309", trip.getPassengers().get(0).getPhoneNumber())
+		);
     }
 
     @Test
