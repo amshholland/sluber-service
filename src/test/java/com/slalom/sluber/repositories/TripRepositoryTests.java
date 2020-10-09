@@ -2,6 +2,7 @@ package com.slalom.sluber.repositories;
 
 import com.slalom.sluber.api.models.CreateTripDetails;
 import com.slalom.sluber.api.models.TripDetails;
+import com.slalom.sluber.api.models.EmployeeDetails;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -28,13 +29,21 @@ public class TripRepositoryTests {
     void createTripTest() {
         CreateTripDetails createTripDetails = new CreateTripDetails();
         createTripDetails.setOrigin(ORIGIN);
+        createTripDetails.setOriginator(CreateTripDetails.OriginatorEnum.PASSENGER);
+        EmployeeDetails employeeDetails = new EmployeeDetails();
+        employeeDetails.setName("Charmander");
+		employeeDetails.setPhoneNumber("5558675309");
+		createTripDetails.addPassengersItem(employeeDetails);
 
 
         TripDetails trip = tripRepository.createTrip(createTripDetails);
 
         assertAll(
                 () -> assertEquals(String.valueOf(mockClock.millis()), trip.getTripId()),
-                () -> assertEquals(ORIGIN, trip.getOrigin())
+                () -> assertEquals(ORIGIN, trip.getOrigin()),
+                () -> assertEquals(CreateTripDetails.OriginatorEnum.PASSENGER.toString(), trip.getOriginator().toString()),
+				() -> assertEquals("Charmander", trip.getPassengers().get(0).getName()),
+				() -> assertEquals("5558675309", trip.getPassengers().get(0).getPhoneNumber())
         );
     }
 }
