@@ -7,6 +7,8 @@ import com.slalom.sluber.repositories.TripRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -42,7 +44,9 @@ public class TripServiceTests {
     void seatCountDecrementedAndPassengerAdded_passengerIsAdded() {
         TripDetails trip = new TripDetails();
         trip.setSeatsAvailable(5);
-        when(mockTripRepository.getTrip("trip1")).then(trip);
+        trip.setPassengers(new ArrayList<>());
+        when(mockTripRepository.getTrip("trip1")).thenReturn(trip);
+        when(mockTripRepository.updateTrip(trip)).thenReturn(trip);
 
         EmployeeDetails passenger = new EmployeeDetails();
         passenger.setName("Pass A");
