@@ -1,12 +1,13 @@
 package com.slalom.sluber.services;
 
 import com.slalom.sluber.api.models.EmployeeDetails;
+import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.exceptions.NotFoundException;
 import com.slalom.sluber.repositories.TripRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -34,6 +35,26 @@ public class TripServiceTests {
 
         assertThrows(NotFoundException.class,
                 () -> tripService.addPassenger(TRIP_ID, employeeDetails)
+        );
+    }
+
+    @Test
+    void seatCountDecrementedAndPassengerAdded_passengerIsAdded() {
+        TripDetails trip = new TripDetails();
+        trip.setSeatsAvailable(5);
+        when(mockTripRepository.getTrip("trip1")).then(trip);
+
+        EmployeeDetails passenger = new EmployeeDetails();
+        passenger.setName("Pass A");
+        passenger.setPhoneNumber("123");
+
+        TripDetails tripDetails = tripService.addPassenger("trip1", passenger);
+
+        assertAll(
+                () -> assertEquals(4, tripDetails.getSeatsAvailable()),
+                () -> assertEquals(1, tripDetails.getPassengers().size()),
+                () -> assertEquals("Pass A", tripDetails.getPassengers().get(0).getName()),
+                () -> assertEquals("123", tripDetails.getPassengers().get(0).getPhoneNumber())
         );
     }
 }

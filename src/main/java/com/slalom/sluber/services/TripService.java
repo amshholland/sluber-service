@@ -58,6 +58,7 @@ public class TripService {
             throw new NotFoundException();
         }
         trip.getPassengers().add(passenger);
+        trip.setSeatsAvailable(trip.getSeatsAvailable() - 1);
         return this.tripRepository.updateTrip(trip);
     }
 }
