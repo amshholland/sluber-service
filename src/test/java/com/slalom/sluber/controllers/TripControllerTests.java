@@ -1,15 +1,17 @@
 package com.slalom.sluber.controllers;
 
 import com.slalom.sluber.api.models.CreateTripDetails;
-import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.api.models.EmployeeDetails;
+import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.services.TripService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import java.util.*;
+
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;

@@ -1,14 +1,13 @@
 package com.slalom.sluber.repositories;
 
 import com.slalom.sluber.api.models.CreateTripDetails;
-import com.slalom.sluber.api.models.TripDetails;
 import com.slalom.sluber.api.models.EmployeeDetails;
+import com.slalom.sluber.api.models.TripDetails;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.time.Clock;
 import java.time.OffsetDateTime;
-
-import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Repository
