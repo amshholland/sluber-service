@@ -27,7 +27,7 @@ Before the AWS DynamoDB gets setup online, a local downloadable version can be i
         * AWS instructions: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.CLI.html#Tools.CLI.DownloadingAndRunning
         * Verify table created succesfully: `aws dynamodb list-tables --endpoint-url http://localhost:8000`
     *  Add an item to the table:  `aws dynamodb put-item --table-name People --item "{""firstName"": {""S"": ""Tim""}}" --return-consumed-capacity TOTAL --endpoint-url http://localhost:8000`
-        * If using a windows terminal - the double sets of " are necessary for the CLI parser to work. Otherwise refer to the guide posted above's code
+        * If using a windows terminal - the double sets of " are necessary for the CLI parser to work. Otherwise, use the following: `'{"firstName": {"S": "Tim"}}'`
         * AWS instructions: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-2.html
     * Query the table: `aws dynamodb get-item --consistent-read --table-name People --key "{""firstName"": {""S"": ""Tim
       ""}}" --endpoint-url http://localhost:8000`
