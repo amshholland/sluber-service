@@ -33,6 +33,7 @@ public class Trip {
         this.name = name;
     }
 
+
     /**
      * Getter for trip id
      * @return trip unique id
