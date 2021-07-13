@@ -39,7 +39,7 @@ public class TripController2 {
         return tripRepository.saveTripToDB(trip);
     }
     //Tell Spring that this will be a get request
-    @GetMapping
+    @GetMapping("/trip")
     public List<Trip> getAllTrips() {
         return tripRepository.getAllTrips();
     }
