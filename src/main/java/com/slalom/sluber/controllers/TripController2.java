@@ -13,6 +13,7 @@ import java.util.List;
 //define the address of the endpoint with Request mapping
 //@RequestMapping("/api/person")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class TripController2 {
     private final TripService tripService;
     //Dependency injection with the person repository
