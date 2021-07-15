@@ -14,18 +14,12 @@ import java.util.UUID;
 /**
  * Trip class represents the Java objects that are storing information translated from the JSON format
  */
-@DynamoDBTable(tableName = "trip")
+@DynamoDBTable(tableName = "Trip")
 public class Trip {
 
-    @DynamoDBHashKey(attributeName = "id")
+    @DynamoDBHashKey(attributeName = "tripId")
     @NotBlank
     private String id; // unique id which corresponds to the primary key
-
-    @DynamoDBAttribute(attributeName = "name")
-    private String name; // trip name
-    //if we are assuming that we will be creating people by receiving POST requests from the client,
-    //we need to tell JAVA to convert the incoming JSON into a java class.
-    //we can define each of these properties as JSON properties
 
     @DynamoDBAttribute(attributeName = "origin")
     private String origin;
@@ -62,17 +56,14 @@ public class Trip {
     public Trip(@JsonProperty("id") String id,
                   @JsonProperty("name") String name) {
         this.id = id;
-        this.name = name;
     }
 
     public Trip() {
         this.id = "";
-        this.name = "";
     }
 
-    public Trip(String id, String name, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver) {
+    public Trip(String id, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver) {
         this.id = id;
-        this.name = name;
         this.origin = origin;
         this.departureTime = departureTime;
         this.comments = comments;
@@ -89,10 +80,6 @@ public class Trip {
      */
     public String getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getOrigin() {
@@ -132,10 +119,6 @@ public class Trip {
      */
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setOrigin(String origin) {
@@ -180,7 +163,7 @@ public class Trip {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 
 
