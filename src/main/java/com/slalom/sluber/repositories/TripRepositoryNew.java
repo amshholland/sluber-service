@@ -21,6 +21,7 @@ public class TripRepositoryNew {
     //private AmazonDynamoDB client;
 
     public Trip saveTripToDB(Trip trip) {
+        trip.setId();
         dynamoDBMapper.save(trip);
         return trip;
     }
