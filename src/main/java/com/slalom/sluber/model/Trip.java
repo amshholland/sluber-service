@@ -7,16 +7,17 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
 /**
  * Trip class represents the Java objects that are storing information translated from the JSON format
  */
-@DynamoDBTable(tableName = "Trips")
+@DynamoDBTable(tableName = "trip")
 public class Trip {
 
-    @DynamoDBHashKey(attributeName = "tripId")
+    @DynamoDBHashKey(attributeName = "id")
     @NotBlank
     private String id; // unique id which corresponds to the primary key
 
@@ -26,11 +27,32 @@ public class Trip {
     //we need to tell JAVA to convert the incoming JSON into a java class.
     //we can define each of these properties as JSON properties
 
+    @DynamoDBAttribute(attributeName = "origin")
+    private String origin;
 
-    public Trip() {
-        this.id = "";
-        this.name = "";
-    }
+    @DynamoDBAttribute(attributeName = "departureTime")
+    private String departureTime;
+
+    @DynamoDBAttribute(attributeName = "comments")
+    private String comments;
+
+    @DynamoDBAttribute(attributeName = "seatsAvailable")
+    private int seatsAvailable;
+
+    @DynamoDBAttribute(attributeName = "passengers")
+    private ArrayList<String> passengers;
+
+    @DynamoDBAttribute(attributeName = "destination")
+    private String destination;
+
+    @DynamoDBAttribute(attributeName = "arrivalTime")
+    private String arrivalTime;
+
+    @DynamoDBAttribute(attributeName = "driver")
+    private String driver;
+
+
+
 
     /**
      * Constructor for a trip objects from JSON
@@ -43,19 +65,23 @@ public class Trip {
         this.name = name;
     }
 
-    public void setId(){
-        String uniqueID = UUID.randomUUID().toString();
-        this.id = uniqueID;
+    public Trip() {
+        this.id = "";
+        this.name = "";
     }
 
-    public void setId(String id) {
+    public Trip(String id, String name, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver) {
         this.id = id;
-    }
-
-    public void setName(String name) {
         this.name = name;
+        this.origin = origin;
+        this.departureTime = departureTime;
+        this.comments = comments;
+        this.seatsAvailable = seatsAvailable;
+        this.passengers = passengers;
+        this.destination = destination;
+        this.arrivalTime = arrivalTime;
+        this.driver = driver;
     }
-
 
     /**
      * Getter for trip id
@@ -65,14 +91,93 @@ public class Trip {
         return id;
     }
 
-    /**
-     * Getter for trip name
-     * @return trip name
-     */
     public String getName() {
         return name;
     }
 
+    public String getOrigin() {
+        return origin;
+    }
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public int getSeatsAvailable() {
+        return seatsAvailable;
+    }
+
+    public ArrayList<String> getPassengers() {
+        return passengers;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public String getDriver() {
+        return driver;
+    }
+
+    /*
+    Setters
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public void setSeatsAvailable(int seatsAvailable) {
+        this.seatsAvailable = seatsAvailable;
+    }
+
+    public void setPassengers(ArrayList<String> passengers) {
+        this.passengers = passengers;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
+    public void setId(){
+        String uniqueID = UUID.randomUUID().toString();
+        this.id = uniqueID;
+    }
+
+    /*
+    Other Methods
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, name);

@@ -4,6 +4,15 @@ info:
   title: Slalom SLUBER
   description: 'SLUBER backend service to help persons coordinate rides'
 paths:
+  /:
+    get:
+      tags:
+        - health check
+      summary: Health Check for AWS
+      operationId: healthCheck
+      responses:
+        200:
+          description: successful operation
   /sluber/trips:
     post:
       tags:
@@ -71,6 +80,30 @@ paths:
             $ref: '#/definitions/TripDetails'
         404:
           description: Trip not found
+  /trip:
+    post:
+      tags:
+        - trip
+      summary: GetAllTrips
+      operationId: getAllTripsUsingGet
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Grab all the trips
+          required: true
+          schema:
+            $ref: '#/definitions/CreateTripDetails'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TripDetails'
+        400:
+          description: Invalid input
 definitions:
   CreateTripDetails:
     type: object
