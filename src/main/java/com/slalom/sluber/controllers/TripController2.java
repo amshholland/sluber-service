@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class TripController2 {
+
     private final TripService tripService;
     //Dependency injection with the person repository
     private final TripRepositoryNew tripRepository;
@@ -39,6 +40,7 @@ public class TripController2 {
     public Trip saveTrip(@RequestBody Trip trip) {
         return tripRepository.saveTripToDB(trip);
     }
+
     //Tell Spring that this will be a get request
     @GetMapping("/trip")
     public List<Trip> getAllTrips() {
