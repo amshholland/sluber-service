@@ -21,7 +21,7 @@ public class TripRepository {
     }
 
     @PostConstruct
-    public void init() {
+    /*public void init() {
         // Trip 1 has passsangers and a driver
         EmployeeDetails employee1 = new EmployeeDetails();
         TripDetails trip1 = new TripDetails();
@@ -81,7 +81,7 @@ public class TripRepository {
         trip3.setPassengers(new ArrayList<>());
         trips.put("tripId-3", trip3);
     }
-
+    */
     /**
      * Stores a new trip.  Generates a tripId
      *
