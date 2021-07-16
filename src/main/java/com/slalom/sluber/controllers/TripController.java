@@ -11,7 +11,7 @@ import java.util.List;
 //define the address of the endpoint with Request mapping
 
 //Only real difference between TC2 and TC is TC2 doesn't "implement Sluber API"
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/sluber")
 public class TripController {

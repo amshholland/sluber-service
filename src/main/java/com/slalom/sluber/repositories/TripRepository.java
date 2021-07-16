@@ -23,19 +23,17 @@ public class TripRepository {
         return trip;
     }
 
-    //Return all trips via a scan request
+    /**
+     * Return all trips via a scan request
+     */
     public List<Trip> getAllTrips() {
         List<Trip> myList = dynamoDBMapper.scan(Trip.class, new DynamoDBScanExpression());
         return myList;
     }
 
-    //No real use case for this method
-    /*public Trip getTripById(String id) {
-        return dynamoDBMapper.load(Trip.class, id);
-    }*/
-
-    //TODO: Add update trip method
-
+    /**
+     * Method to delete a document from DynamoDB
+    */
     public String deleteTripFromDB(String id) {
         Trip trip = dynamoDBMapper.load(Trip.class, id);
         dynamoDBMapper.delete(trip);
