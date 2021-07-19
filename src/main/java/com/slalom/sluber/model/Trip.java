@@ -94,7 +94,7 @@ public class Trip {
         this.id = "";
     }
 
-    public Trip(String id, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver) {
+    public Trip(String id, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver, OriginatorEnum originator) {
         this.id = id;
         this.origin = origin;
         this.departureTime = departureTime;
@@ -104,6 +104,7 @@ public class Trip {
         this.destination = destination;
         this.arrivalTime = arrivalTime;
         this.driver = driver;
+        this.originator = originator;
     }
 
     /**
@@ -146,9 +147,6 @@ public class Trip {
         return driver;
     }
 
-    /*
-    Setters
-     */
     public void setId(String id) {
         this.id = id;
     }

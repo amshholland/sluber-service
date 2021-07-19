@@ -17,6 +17,11 @@ public class TripRepository {
     @Autowired
     private DynamoDBMapper dynamoDBMapper;
 
+    /**
+     * Saving trip to the database
+     * @param trip
+     * @return the created trip
+     */
     public Trip saveTripToDB(Trip trip) {
         trip.setId();
         dynamoDBMapper.save(trip);
@@ -31,13 +36,9 @@ public class TripRepository {
         return myList;
     }
 
-    /**
-     * Method to delete a document from DynamoDB
-    */
-    public String deleteTripFromDB(String id) {
-        Trip trip = dynamoDBMapper.load(Trip.class, id);
-        dynamoDBMapper.delete(trip);
-        return "Trip Deleted";
-    }
-
+    // TODO: create a delete trip method [SSU-70]
+//    public void deleteTripFromDB(String id) {
+//        Trip trip = dynamoDBMapper.load(Trip.class, id);
+//        dynamoDBMapper.delete(trip);
+//    }
 }
