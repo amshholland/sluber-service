@@ -37,5 +37,10 @@ public class TripController {
             return tripRepository.saveTripToDB(trip);
     }
 
+    @PutMapping("/trips/{tripId}")
+    public Trip updateTrip(@RequestBody Trip trip, @PathVariable String tripId) {
+        trip.setId(tripId);
+        return tripRepository.updateTrip(trip, tripId);
+    }
     //TODO: Add a passenger to a trip
 }

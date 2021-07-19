@@ -1,7 +1,10 @@
 package com.slalom.sluber.repositories;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.slalom.sluber.model.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,6 +39,16 @@ public class TripRepository {
         return myList;
     }
 
+
+    public Trip updateTrip(Trip trip, String tripId) {
+        dynamoDBMapper.save(trip,
+                new DynamoDBSaveExpression()
+                        .withExpectedEntry("tripId",
+                                new ExpectedAttributeValue(
+                                        new AttributeValue().withS(tripId)
+                                )));
+        return dynamoDBMapper.load(Trip.class, tripId);
+    }
     // TODO: create a delete trip method [SSU-70]
 //    public void deleteTripFromDB(String id) {
 //        Trip trip = dynamoDBMapper.load(Trip.class, id);
