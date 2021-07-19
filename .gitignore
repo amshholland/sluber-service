@@ -25,6 +25,7 @@ dist/
 
 # JetBrains IDE
 .idea/
+sluber.iml
 
 # Unit test reports
 TEST*.xml
@@ -47,3 +48,4 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+/sluber.iml
