@@ -16,13 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
 class SluberServiceApplicationTests {
 	private static HttpHeaders headers;
 	private static final String URL_PREFIX = "/";
 	private static final String ORIGIN = "Seattle Slalom HQ";
+	private String trip1Id;
+	private String trip2Id;
+	private String trip3Id;
 
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -46,6 +51,7 @@ class SluberServiceApplicationTests {
 		newTrip.setDriver("Jax");
 		newTrip.setArrivalTime("12 October 12:00:00 PM");
 		newTrip.setId();
+		trip1Id = newTrip.getId();
 		newTrip.setSeatsAvailable(3);
 		newTrip.setPassengers(p);
 
@@ -66,16 +72,16 @@ class SluberServiceApplicationTests {
 	@Test
 	void getAllTrips() {
 		ArrayList<String> p = new ArrayList<String>();
-		p.add("Ali");
-		p.add("Henry");
+		p.add("Nadia");
 		Trip newTrip = new Trip();
 		newTrip.setOrigin(ORIGIN);
 		newTrip.setDepartureTime("10 October 10:00:00 AM");
-		newTrip.setDestination("Tijuana");
-		newTrip.setDriver("Jax");
+		newTrip.setDestination("Vancouver");
+		newTrip.setDriver("Hana");
 		newTrip.setArrivalTime("12 October 12:00:00 PM");
 		newTrip.setId();
-		newTrip.setSeatsAvailable(3);
+		trip2Id = newTrip.getId();
+		newTrip.setSeatsAvailable(4);
 		newTrip.setPassengers(p);
 
 		HttpEntity<Trip> entity = new HttpEntity<>(newTrip, headers);
@@ -88,10 +94,11 @@ class SluberServiceApplicationTests {
 		newTrip2.setOrigin(ORIGIN);
 		newTrip2.setDepartureTime("10 October 10:00:00 AM");
 		newTrip2.setDestination("Manager");
-		newTrip2.setDriver("John");
+		newTrip2.setDriver("Erik");
 		newTrip2.setArrivalTime("12 October 12:00:00 PM");
 		newTrip2.setId();
-		newTrip2.setSeatsAvailable(3);
+		trip3Id = newTrip2.getId();
+		newTrip2.setSeatsAvailable(2);
 		newTrip2.setPassengers(p2);
 
 		HttpEntity<Trip> entity2 = new HttpEntity<>(newTrip2, headers);
@@ -102,10 +109,11 @@ class SluberServiceApplicationTests {
 		assertAll(
 				() -> assertNotNull(trips),
 				() -> assertNotNull(trips[0]),
-				() -> assertNotNull(trips[1]),
-				() -> assertEquals(trips[1].getDestination(), "Manager")
-//				() -> assertEquals(trips[1].getDriver(), "John")
+				() -> assertNotNull(trips[1])
+
 		);
+
+
 	}
 
 	// TODO: add more test coverage [SSU-69]
