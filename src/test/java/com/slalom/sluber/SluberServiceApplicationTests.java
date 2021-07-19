@@ -2,6 +2,7 @@ package com.slalom.sluber;
 
 import com.slalom.sluber.model.Trip;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,6 +40,7 @@ class SluberServiceApplicationTests {
 		headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
 	}
 
+	@Disabled
 	@Test
 	void createTrip() {
 		ArrayList<String> p = new ArrayList<String>();
@@ -69,6 +71,7 @@ class SluberServiceApplicationTests {
 		);
 	}
 
+	@Disabled
 	@Test
 	void getAllTrips() {
 		ArrayList<String> p = new ArrayList<String>();
