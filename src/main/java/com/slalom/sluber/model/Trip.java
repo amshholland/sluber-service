@@ -20,7 +20,7 @@ public class Trip {
 
     @DynamoDBHashKey(attributeName = "tripId")
     @NotBlank
-    private String id; // unique id which corresponds to the primary key
+    private String tripId; // unique id which corresponds to the primary key
 
     @DynamoDBAttribute(attributeName = "origin")
     private String origin;
@@ -82,20 +82,10 @@ public class Trip {
 
     /**
      * Constructor for a trip objects from JSON
-     * @param id unique id/primary key
-     * @param name trip name
      */
-    public Trip(@JsonProperty("id") String id,
-                  @JsonProperty("name") String name) {
-        this.id = id;
-    }
 
-    public Trip() {
-        this.id = "";
-    }
-
-    public Trip(String id, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver, OriginatorEnum originator) {
-        this.id = id;
+    public Trip(String tripId, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver, OriginatorEnum originator) {
+        this.tripId = tripId;
         this.origin = origin;
         this.departureTime = departureTime;
         this.comments = comments;
@@ -107,12 +97,13 @@ public class Trip {
         this.originator = originator;
     }
 
+    public Trip() {}
+
     /**
      * Getter for trip id
-     * @return trip unique id
      */
-    public String getId() {
-        return id;
+    public String getTripId() {
+        return tripId;
     }
 
     public String getOrigin() {
@@ -147,8 +138,11 @@ public class Trip {
         return driver;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    /*
+    Setters
+     */
+    public void setTripId(String id) {
+        this.tripId = id;
     }
 
     public void setOrigin(String origin) {
@@ -183,9 +177,9 @@ public class Trip {
         this.driver = driver;
     }
 
-    public void setId(){
+    public void setTripId(){
         String uniqueID = UUID.randomUUID().toString();
-        this.id = uniqueID;
+        this.tripId = uniqueID;
     }
 
     /*
@@ -193,7 +187,7 @@ public class Trip {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(tripId);
     }
 
 

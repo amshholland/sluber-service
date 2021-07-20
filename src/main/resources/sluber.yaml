@@ -166,9 +166,13 @@ definitions:
   EmployeeDetails:
     type: object
     properties:
+      employeeId:
+        type: string
       name:
         type: string
       phoneNumber:
+        type: string
+      emailAddress:
         type: string
 
 schemes:

@@ -52,8 +52,8 @@ class SluberServiceApplicationTests {
 		newTrip.setDestination("Tijuana");
 		newTrip.setDriver("Jax");
 		newTrip.setArrivalTime("12 October 12:00:00 PM");
-		newTrip.setId();
-		trip1Id = newTrip.getId();
+		newTrip.setTripId();
+		trip1Id = newTrip.getTripId();
 		newTrip.setSeatsAvailable(3);
 		newTrip.setPassengers(p);
 
@@ -82,8 +82,8 @@ class SluberServiceApplicationTests {
 		newTrip.setDestination("Vancouver");
 		newTrip.setDriver("Hana");
 		newTrip.setArrivalTime("12 October 12:00:00 PM");
-		newTrip.setId();
-		trip2Id = newTrip.getId();
+		newTrip.setTripId();
+		trip2Id = newTrip.getTripId();
 		newTrip.setSeatsAvailable(4);
 		newTrip.setPassengers(p);
 
@@ -99,8 +99,8 @@ class SluberServiceApplicationTests {
 		newTrip2.setDestination("Manager");
 		newTrip2.setDriver("Erik");
 		newTrip2.setArrivalTime("12 October 12:00:00 PM");
-		newTrip2.setId();
-		trip3Id = newTrip2.getId();
+		newTrip2.setTripId();
+		trip3Id = newTrip2.getTripId();
 		newTrip2.setSeatsAvailable(2);
 		newTrip2.setPassengers(p2);
 

@@ -1,7 +1,10 @@
 package com.slalom.sluber.controllers;
+import com.slalom.sluber.model.Employee;
 import com.slalom.sluber.model.Trip;
 import com.slalom.sluber.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -33,13 +36,13 @@ public class TripController {
 
     //Save a trip to the database
     @PostMapping("/trips")
-    public Trip saveTrip(@RequestBody Trip trip) {
-            return tripRepository.saveTripToDB(trip);
+    public ResponseEntity<Trip> saveTrip(@RequestBody Trip trip) {
+            return new ResponseEntity(tripRepository.saveTripToDB(trip), HttpStatus.OK);
     }
 
     @PutMapping("/trips/{tripId}")
     public Trip updateTrip(@RequestBody Trip trip, @PathVariable String tripId) {
-        trip.setId(tripId);
+        trip.setTripId(tripId);
         return tripRepository.updateTrip(trip, tripId);
     }
     //TODO: Add a passenger to a trip

@@ -24,7 +24,7 @@ public class TripControllerTests {
         mockTestTrip.setDestination("Tijuana");
         mockTestTrip.setDriver("Jax");
         mockTestTrip.setArrivalTime("12 October 12:00:00 PM");
-        mockTestTrip.setId();
+        mockTestTrip.setTripId();
         mockTestTrip.setSeatsAvailable(3);
         mockTestTrip.setPassengers(p);
 
@@ -37,7 +37,7 @@ public class TripControllerTests {
         mockTestTrip2.setDestination("Vancouver");
         mockTestTrip2.setDriver("Hana");
         mockTestTrip2.setArrivalTime("12 October 12:00:00 PM");
-        mockTestTrip2.setId();
+        mockTestTrip2.setTripId();
         mockTestTrip2.setSeatsAvailable(4);
         mockTestTrip2.setPassengers(p2);
 

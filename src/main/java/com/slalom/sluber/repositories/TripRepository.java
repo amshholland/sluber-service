@@ -26,7 +26,7 @@ public class TripRepository {
      * @return the created trip
      */
     public Trip saveTripToDB(Trip trip) {
-        trip.setId();
+        trip.setTripId();
         dynamoDBMapper.save(trip);
         return trip;
     }
