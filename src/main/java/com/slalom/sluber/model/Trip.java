@@ -46,45 +46,14 @@ public class Trip {
     @DynamoDBAttribute(attributeName = "driver")
     private String driver;
 
-    /**
-     * Getter and setter for originator enum
-     */
-    public enum OriginatorEnum {
-        DRIVER("DRIVER"),
-
-        PASSENGER("PASSENGER");
-
-        private String value;
-
-        OriginatorEnum(String value) {
-            this.value = value;
-        }
-
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        @JsonCreator
-        public static Trip.OriginatorEnum fromValue(String text) {
-            for (Trip.OriginatorEnum b : Trip.OriginatorEnum.values()) {
-                if (String.valueOf(b.value).equals(text)) {
-                    return b;
-                }
-            }
-            return null;
-        }
-    }
-
     @DynamoDBAttribute(attributeName = "originator")
-    private OriginatorEnum originator = null;
+    private String originator = null;
 
     /**
      * Constructor for a trip objects from JSON
      */
 
-    public Trip(String tripId, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver, OriginatorEnum originator) {
+    public Trip(String tripId, String origin, String departureTime, String comments, int seatsAvailable, ArrayList<String> passengers, String destination, String arrivalTime, String driver, String originator) {
         this.tripId = tripId;
         this.origin = origin;
         this.departureTime = departureTime;
@@ -138,6 +107,10 @@ public class Trip {
         return driver;
     }
 
+    public String getOriginator() {
+        return originator;
+    }
+
     /*
     Setters
      */
@@ -180,6 +153,10 @@ public class Trip {
     public void setTripId(){
         String uniqueID = UUID.randomUUID().toString();
         this.tripId = uniqueID;
+    }
+
+    public void setOriginator(String originator) {
+        this.originator = originator;
     }
 
     /*
